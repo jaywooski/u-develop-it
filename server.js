@@ -10,10 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-// Default response for any other request (Not Found)
-app.use((req, res) => {
-    res.status(404).end();
-});
+
 
 // Connect to database
 const db = mysql.createConnection(
@@ -113,6 +110,11 @@ app.post('/api/candidate', ({ body }, res) => {
             data: body
         });
     });
+});
+
+// Default response for any other request (Not Found)
+app.use((req, res) => {
+    res.status(404).end();
 });
 
 app.listen(PORT, () => {
